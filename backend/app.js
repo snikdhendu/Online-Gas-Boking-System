@@ -19,9 +19,10 @@ app.use(express.json());
 
 // Import routes
 import orderRoutes from './routes/order.js';
-
+import authRoutes from './routes/auth.js';
 
 // Use routes
+app.use('/api/auth', authRoutes);
 app.use('/api', orderRoutes);
 
 // MongoDB connection
