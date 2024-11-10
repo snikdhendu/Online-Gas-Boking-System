@@ -3,6 +3,9 @@ import {
   getAllBookings,
   getBookingById,
   getBookingsByClerkId,
+  createBooking,
+  setPaymentStatusToPaid,
+  updateBooking,
 } from '../controllers/orderController.js';
 
 const router = express.Router();
@@ -15,6 +18,12 @@ router.get('/booking/:id', getBookingById);
 
 // Route for getting bookings by clerkId
 router.get('/booking/user/:clerkId', getBookingsByClerkId);
+
+router.post('/booking/new',createBooking);
+
+router.put('/bookings/:id/payment-paid', setPaymentStatusToPaid);
+
+router.put('/bookings/:id/update', updateBooking);
 
 // // Route for creating a new booking
 // router.post('/create', createBooking);
