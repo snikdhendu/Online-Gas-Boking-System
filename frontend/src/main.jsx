@@ -5,15 +5,21 @@ import './index.css'
 import {BrowserRouter} from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { AuthProvider } from './context/authContext.jsx'
+import { ClerkProvider } from "@clerk/clerk-react";
+
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+
+if (!PUBLISHABLE_KEY) {
+  throw new Error("Missing Publishable Key");
+}
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
   <BrowserRouter>
-  <AuthProvider>
+  <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
     <ToastContainer position='top-center' autoClose={2000} closeOnClick={true} />
     <App />
-    </AuthProvider>
+    </ClerkProvider>
   </BrowserRouter>
   </React.StrictMode>,
 )

@@ -80,10 +80,10 @@ const Header = () => {
 
           <div className="flex items-center gap-4">
 
-            <Link to="/login" className="bg-Color py-2 px-6 text-white font-[500] h-[44px] flex text-center justify-self-center rounded-[50px]">
+            <Link to="/sign-in" className="bg-Color py-2 px-6 text-white font-[500] h-[44px] flex text-center justify-self-center rounded-[50px]">
               Login
             </Link>
-            <Link to="/signup" className="bg-Color py-2 px-6 text-white font-[500] h-[44px] flex text-center justify-self-center rounded-[50px]">
+            <Link to="/sign-up" className="bg-Color py-2 px-6 text-white font-[500] h-[44px] flex text-center justify-self-center rounded-[50px]">
 
               Signup
 

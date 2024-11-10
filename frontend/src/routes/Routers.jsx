@@ -1,22 +1,22 @@
 import React from "react";
 import Home from "../pages/Home";
 import Contact from "../pages/Contact";
-import Signup from "../pages/Signup";
 import Services from "../pages/Services";
-import Login from "../pages/Login";
 // import DoctorDetails from "../pages/Doctors/DoctorDetails";
 import Doctors from "../pages/Doctors/Gasses";
 import { Routes, Route } from "react-router-dom";
 import MyAccount from "../Dashboard/UserAccount/MyAccount";
 import Dashboard from "../Dashboard/DoctorAccount/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
+import Signin from "../sign-in/[[...index]]";
+import Signup from "../sign-up/[[...index]]";
 
 const Routers = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
+      <Route path="/sign-in" element={<Signin />} />
+      <Route path="/sign-up" element={<Signup />} />
       <Route path="/service" element={<Services />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/gasses" element={<Doctors />} />
