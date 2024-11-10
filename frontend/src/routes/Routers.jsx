@@ -4,7 +4,7 @@ import Contact from "../pages/Contact";
 import Signup from "../pages/Signup";
 import Services from "../pages/Services";
 import Login from "../pages/Login";
-import DoctorDetails from "../pages/Doctors/DoctorDetails";
+// import DoctorDetails from "../pages/Doctors/DoctorDetails";
 import Doctors from "../pages/Doctors/Gasses";
 import { Routes, Route } from "react-router-dom";
 import MyAccount from "../Dashboard/UserAccount/MyAccount";
@@ -36,7 +36,7 @@ const Routers = () => {
           </ProtectedRoute>
         }
       />
-      <Route path="/doctors/:id" element={<DoctorDetails />} />
+      {/* <Route path="/doctors/:id" element={<DoctorDetails />} /> */}
     </Routes>
   );
 };

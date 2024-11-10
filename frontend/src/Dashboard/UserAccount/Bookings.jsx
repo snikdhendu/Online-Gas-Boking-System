@@ -1,7 +1,7 @@
 import React from 'react'
 import UseFetchData from '../../hooks/UseFetchData'
 import { BASE_URL } from '../../config'
-import DoctorCard from '../../components/Doctors/DoctorsCard'
+// import DoctorCard from '../../components/Doctors/DoctorsCard'
 
 const Bookings = () => {
   const {data: appointments} = UseFetchData(`${BASE_URL}/user/appointments/my-appointments`);
