@@ -8,11 +8,11 @@ import Footer from '../components/Footer/Footer'
 const Layout = () => {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <main>
         <Routers />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

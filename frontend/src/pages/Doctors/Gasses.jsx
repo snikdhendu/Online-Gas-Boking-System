@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Testimonial from '../../components/Testimonials/Testimonial';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 
 const Gass = () => {
   const navigate = useNavigate();
@@ -23,6 +25,7 @@ const Gass = () => {
 
   return (
     <>
+      <Header />
       <section className='bg-[#fff9ea]'>
         <div className="container text-center">
           <h2 className="heading">Find a Gas</h2>
@@ -61,6 +64,7 @@ const Gass = () => {
           <Testimonial />
         </div>
       </section>
+      <Footer />
     </>
   );
 }

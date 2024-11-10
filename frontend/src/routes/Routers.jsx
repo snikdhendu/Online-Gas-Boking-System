@@ -1,4 +1,3 @@
-import React from "react";
 import Home from "../pages/Home";
 import Contact from "../pages/Contact";
 import Services from "../pages/Services";
@@ -10,6 +9,7 @@ import Dashboard from "../Dashboard/DoctorAccount/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import Signin from "../sign-in/[[...index]]";
 import Signup from "../sign-up/[[...index]]";
+import UserDashboard from "../Dashboard/UserDashboard.jsx";
 
 const Routers = () => {
   return (
@@ -20,6 +20,7 @@ const Routers = () => {
       <Route path="/service" element={<Services />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/gasses" element={<Doctors />} />
+      <Route path='/dashboard/*' element={< UserDashboard/>}></Route>
       <Route
         path="/doctors/profile/me"
         element={

@@ -1,10 +1,12 @@
 import React from 'react'
 
-
+import Header from '../components/Header/Header'
+import Footer from '../components/Footer/Footer'
 
 const Home = () => {
   return (
     <>
+      <Header />
       {/* Hero Section Start */}
       <section className='heroSection pt-[40px] 2xl:h-[800px]'>
         <div className="container">
@@ -246,6 +248,7 @@ const Home = () => {
         </div>
       </section> */}
       {/* Testimonials */}
+      <Footer/>
     </>
   )
 }

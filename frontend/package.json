@@ -12,6 +12,9 @@
   "dependencies": {
     "@clerk/clerk-react": "^5.15.2",
     "@clerk/themes": "^2.1.42",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.1.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",

@@ -10,6 +10,7 @@ const Signin = () => {
       <SignIn 
         path="/sign-in" 
         signUpUrl="/sign-up"
+        redirectUrl='/dashboard'
         appearance={{
           baseTheme: theme === 'dark' ? dark : undefined,
           variables: { colorPrimary: theme === 'dark' ? 'white' : 'black' }

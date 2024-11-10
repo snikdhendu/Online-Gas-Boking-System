@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
 const Services = () => {
   const location = useLocation();
   const { gassName, company, quantity } = location.state || {};
@@ -40,7 +41,9 @@ const Services = () => {
   };
 
   return (
-    <section className="flex flex-col lg:flex-row items-center lg:items-start lg:space-x-8 p-8 justify-center">
+    <>
+    <Header/>
+        <section className="flex flex-col lg:flex-row items-center lg:items-start lg:space-x-8 p-8 justify-center">
       <div className="lg:w-1/2 bg-transparent">
         <img src="/gass1.png" alt="Gas" className="w-full h-[700px] rounded-md" />
       </div>
@@ -175,6 +178,9 @@ const Services = () => {
         )}
       </div>
     </section>
+    <Footer/>
+    </>
+
   );
 };
 
