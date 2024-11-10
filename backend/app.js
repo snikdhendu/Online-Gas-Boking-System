@@ -18,10 +18,11 @@ app.use(cors({
 app.use(express.json());
 
 // Import routes
+import orderRoutes from './routes/order.js';
 
 
 // Use routes
-
+app.use('/api', orderRoutes);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
