@@ -43,3 +43,103 @@ export const getBookingsByClerkId = async (req, res) => {
         return res.status(500).json({ message: 'Error fetching bookings by clerkId', error });
     }
 };
+
+export const createBooking = async (req, res) => {
+    const {
+        clerkId, 
+        deliveryDate, 
+        amount,
+        cylinder, 
+    } = req.body;
+
+    try {
+     
+        if (!clerkId || !deliveryDate || !amount || !cylinder || !cylinder.brand || !cylinder.size) {
+            return res.status(400).json({ message: 'All fields are required' });
+        }
+
+
+        const newBooking = new Booking({
+            clerkId,
+            deliveryDate,
+            amount,
+            cylinder,
+            status: 'confirmed', 
+        });
+
+     
+        const savedBooking = await newBooking.save();
+
+      
+        res.status(201).json({
+            message: 'Booking created successfully',
+            booking: savedBooking,
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Error creating booking', error });
+    }
+};
+
+export const updateBooking = async (req, res) => {
+    const { bookingId } = req.params;  
+    const { status, deliveryDate } = req.body;  
+
+    try {
+        const booking = await Booking.findById(bookingId);
+
+        if (!booking) {
+            return res.status(404).json({ message: 'Booking not found' });
+        }
+
+        if (status) {
+            // Check if the status is valid
+            if (!['pending', 'confirmed', 'dispatched', 'delivered', 'cancelled'].includes(status)) {
+                return res.status(400).json({ message: 'Invalid status value' });
+            }
+            booking.status = status;  // Set the new status
+        }
+
+        if (deliveryDate) {
+         
+            const parsedDeliveryDate = new Date(deliveryDate);
+            if (isNaN(parsedDeliveryDate.getTime())) {
+                return res.status(400).json({ message: 'Invalid delivery date' });
+            }
+            booking.deliveryDate = parsedDeliveryDate;  
+        }
+
+ 
+        booking.updatedAt = Date.now();
+
+        const updatedBooking = await booking.save();
+
+        res.status(200).json({
+            message: 'Booking updated successfully',
+            booking: updatedBooking,
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating booking', error });
+    }
+};
+export const setPaymentStatusToPaid = async (req, res) => {
+    const { bookingId } = req.params; 
+
+    try {
+        const updatedBooking = await Booking.findByIdAndUpdate(
+            bookingId,
+            { paymentStatus: 'paid', updatedAt: Date.now() },
+            { new: true } 
+        );
+
+        if (!updatedBooking) {
+            return res.status(404).json({ message: 'Booking not found' });
+        }
+
+        res.status(200).json({
+            message: 'Payment status updated to paid',
+            booking: updatedBooking,
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating payment status', error });
+    }
+};
