@@ -91,7 +91,7 @@ const ViewOrders = () => {
                 <div className="p-6 bg-white bg-opacity-60 backdrop-blur-sm">
                   <div className="flex justify-between items-center mb-4">
                     <span className="text-sm font-medium text-gray-500">
-                      Booking ID: {booking._id}
+                      Booking ID: {booking._id.slice(-6)}
                     </span>
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(
