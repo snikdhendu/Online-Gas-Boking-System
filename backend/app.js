@@ -11,7 +11,7 @@ const app = express();
 // Define allowed origins for CORS
 const allowedOrigins = [
   'http://localhost:5173', 
-  'https://online-gass-boking-system.vercel.app'
+  'https://book-my-gas.vercel.app/'
 ];
 
 // Middleware for CORS with conditional origin handling
