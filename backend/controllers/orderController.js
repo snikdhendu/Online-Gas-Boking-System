@@ -1,4 +1,5 @@
 import Booking from '../models/Booking.js'; 
+import { sendBookingConfirmationEmail } from './sendEmail.js';
 
 // Get all bookings
 export const getAllBookings = async (req, res) => {
@@ -50,11 +51,12 @@ export const createBooking = async (req, res) => {
         deliveryDate, 
         amount,
         cylinder, 
+        email,
     } = req.body;
 
     try {
      
-        if (!clerkId || !deliveryDate || !amount || !cylinder || !cylinder.brand || !cylinder.size) {
+        if (!clerkId || !deliveryDate || !amount || !cylinder || !cylinder.brand || !cylinder.size || !email) {
             return res.status(400).json({ message: 'All fields are required' });
         }
 
@@ -69,6 +71,8 @@ export const createBooking = async (req, res) => {
         });
 
         const savedBooking = await newBooking.save();
+
+        await sendBookingConfirmationEmail(email, savedBooking);
       
         res.status(201).json({
             message: 'Booking created successfully',

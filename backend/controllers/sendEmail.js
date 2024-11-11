@@ -1,4 +1,3 @@
-// utils/sendEmail.js
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
@@ -18,8 +17,8 @@ export const sendBookingConfirmationEmail = async (email, bookingDetails) => {
       <h1>Your Booking is Confirmed!</h1>
       <p>Thank you for your booking. Here are your booking details:</p>
       <ul>
-        <li><strong>Booking Date:</strong> ${bookingDetails.bookingDate.toLocaleDateString()}</li>
-        <li><strong>Delivery Date:</strong> ${bookingDetails.deliveryDate.toLocaleDateString()}</li>
+        <li><strong>Booking Date:</strong> ${new Date(bookingDetails.bookingDate).toLocaleDateString()}</li>
+        <li><strong>Delivery Date:</strong> ${new Date(bookingDetails.deliveryDate).toLocaleDateString()}</li>
         <li><strong>Total Amount:</strong> $${bookingDetails.amount}</li>
         <li><strong>Cylinder Brand:</strong> ${bookingDetails.cylinder.brand}</li>
         <li><strong>Cylinder Size:</strong> ${bookingDetails.cylinder.size} kg</li>

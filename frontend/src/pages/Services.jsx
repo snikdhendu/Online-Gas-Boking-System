@@ -12,6 +12,8 @@ const Services = () => {
   const { gassName: stateGassName, company: stateCompany, quantity: stateQuantity } = location.state || {};
   const { user } = useUser();
   const clerkId = user?.id;
+  const email = user?.emailAddresses[0]?.emailAddress;
+  
 
   // State to manage the current step and form data
   const [step, setStep] = useState(1);
@@ -58,7 +60,9 @@ const Services = () => {
         brand: company,
         size: quantity
       },
+      email: email
     };
+    console.log(email);
     
     try {
       const response = await axiosInstance.post('/api/booking/new', bookingData);
