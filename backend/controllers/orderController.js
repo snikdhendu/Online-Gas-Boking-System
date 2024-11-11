@@ -84,7 +84,7 @@ export const createBooking = async (req, res) => {
 };
 
 export const updateBooking = async (req, res) => {
-    const  bookingId  = req.params;  
+    const  bookingId  = req.params.id;  
     const { status, deliveryDate } = req.body;  
 
     try {
