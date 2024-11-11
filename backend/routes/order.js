@@ -24,7 +24,7 @@ router.post('/booking/new',createBooking);
 
 router.put('/bookings/:id/payment-paid', setPaymentStatusToPaid);
 
-router.put('/bookings/:id/update', updateBooking);
+router.put('/bookings/update/:id', updateBooking);
 
 router.post('/check-admin',checkAdminStatus);
 
