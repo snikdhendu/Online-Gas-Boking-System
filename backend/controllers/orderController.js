@@ -64,7 +64,8 @@ export const createBooking = async (req, res) => {
             deliveryDate,
             amount,
             cylinder,
-            status: 'confirmed', 
+            status: 'confirmed',
+            paymentStatus: 'paid', 
         });
 
         const savedBooking = await newBooking.save();
