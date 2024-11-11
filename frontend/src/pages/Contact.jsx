@@ -1,7 +1,11 @@
 import React from 'react'
+import Header from '../components/Header/Header'
+import Footer from '../components/Footer/Footer'
 
 const Contact = () => {
   return (
+    <>
+    <Header />
     <section>
       <div className='px-4 mx-auto max-w-screen-md'>
         <h2 className='heading text-center'>Contact Us</h2>
@@ -27,6 +31,8 @@ const Contact = () => {
         </form>
       </div>
     </section>
+    <Footer/>
+    </>
   )
 }
 

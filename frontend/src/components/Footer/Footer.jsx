@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import logo from './../../assets/images/logo.png'
-import {RiLinkedinFill} from 'react-icons/ri'
-import {AiFillGithub, AiOutlineInstagram} from 'react-icons/ai'
+import { RiLinkedinFill } from 'react-icons/ri'
+import { AiFillGithub, AiOutlineInstagram } from 'react-icons/ai'
 
 const socialLinks = [
   {
@@ -25,42 +25,42 @@ const quickLinks01 = [
     display: 'Home'
   },
   {
-    path: '/',
-    display: 'About'
+    path: '/about',
+    display: 'About Us'
   },
   {
     path: '/services',
-    display: 'Services'
+    display: 'Our Services'
   },
   {
-    path: '/',
+    path: '/blog',
     display: 'Blog'
   },
 ]
 
 const quickLinks02 = [
   {
-    path: '/find-a-doctor',
-    display: 'Find a Doctor'
+    path: '/find-distributor',
+    display: 'Find a Distributor'
   },
   {
-    path: '/',
-    display: 'Request an Appointment'
+    path: '/book-cylinder',
+    display: 'Book a Cylinder'
   },
   {
-    path: '/',
-    display: 'Find a Location'
+    path: '/locations',
+    display: 'Service Locations'
   },
   {
-    path: '/',
-    display: 'Get an Opinion'
+    path: '/safety-tips',
+    display: 'Safety Tips'
   },
 ]
 
 const quickLinks03 = [
   {
-    path: '/',
-    display: 'Donate'
+    path: '/donate',
+    display: 'Support Us'
   },
   {
     path: '/contact',
@@ -69,30 +69,24 @@ const quickLinks03 = [
 ]
 
 
+
 const Footer = () => {
   const year = new Date().getFullYear();
-  
+
   return (
     <footer className='pb-16 pt-10'>
       <div className="container">
         <div className="flex justify-between flex-col md:flex-row flex-wrap gap-[30px]">
           <div>
-            <img src={logo} alt="" />
-            <p className="text-[16px] leading-7 font-[400] text-TextColor mt-4">
-              Build by using MERN Stack in {year} by Uzair S.
-            </p>
+            <Link to='/' className="flex justify-center items-center gap-2 p-2  border-primary rounded-lg  text-white">
+              <img src='/logo.png' alt="Logo" className="h-12 w-12 rounded-full shadow-md bg-gradient-to-r from-yellow-400 to-orange-400" />
+              <span className="text-2xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-500">
+                BookMyGas
+              </span>
+            </Link>
 
-            <div className="flex items-center gap-3 mt-4">
-              {socialLinks.map((link, index) => (
-                <Link
-                to={link.path}
-                key={index}
-                className='w-9 h-9 border border-solid border-[181A1E] rounded-full flex items-center justify-center group hover:bg-Yellow hover:border-none'
-                >
-                {link.icon}
-                </Link>
-              ))}
-            </div>
+
+
           </div>
 
           <div>
@@ -103,9 +97,9 @@ const Footer = () => {
             <ul>
               {quickLinks01.map((item, index) => (
                 <li key={index} className='mb-4'>
-                    <Link to={item.path} className='text-[16px] leading-7 font-[400] text-TextColor'>
-                      {item.display}
-                    </Link>
+                  <Link to={item.path} className='text-[16px] leading-7 font-[400] text-TextColor'>
+                    {item.display}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -113,15 +107,15 @@ const Footer = () => {
 
           <div>
             <h2 className="text-[20px] leading-[30px] font-[700] mb-6 text-HeadingColor ">
-               -
+              -
             </h2>
 
             <ul>
               {quickLinks02.map((item, index) => (
                 <li key={index} className='mb-4'>
-                    <Link to={item.path} className='text-[16px] leading-7 font-[400] text-TextColor'>
-                      {item.display}
-                    </Link>
+                  <Link to={item.path} className='text-[16px] leading-7 font-[400] text-TextColor'>
+                    {item.display}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -135,9 +129,9 @@ const Footer = () => {
             <ul>
               {quickLinks03.map((item, index) => (
                 <li key={index} className='mb-4'>
-                    <Link to={item.path} className='text-[16px] leading-7 font-[400] text-TextColor'>
-                      {item.display}
-                    </Link>
+                  <Link to={item.path} className='text-[16px] leading-7 font-[400] text-TextColor'>
+                    {item.display}
+                  </Link>
                 </li>
               ))}
             </ul>

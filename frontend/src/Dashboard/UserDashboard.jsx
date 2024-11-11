@@ -7,13 +7,15 @@ import MainDashBoard from './MainDashboard';
 import SideBox from '../components/SideBox';
 import MyOrder from './MyOrder';
 
+import Header from '../components/Header/Header';
+
 const UserDashboard = () => {
   const { isSignedIn, user } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
     const storeUserData = async () => {
-      if (isSignedIn && user) { 
+      if (isSignedIn && user) {
         try {
           console.log('User data:', user);
 
@@ -42,11 +44,12 @@ const UserDashboard = () => {
 
   return (
     <div className="min-h-screen">
+      {/* <Header className=' relative -top-6'/> */}
       <SideBox />
 
       <Routes>
         <Route path="/" element={<MainDashBoard />} />
-        <Route path="/myorders" element={<MyOrder/>} />
+        <Route path="/myorders" element={<MyOrder />} />
       </Routes>
     </div>
   );

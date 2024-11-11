@@ -2,8 +2,10 @@ import React from 'react'
 
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+  const navigate=useNavigate();
   return (
     <>
       <Header />
@@ -12,60 +14,53 @@ const Home = () => {
         <div className="container">
           <div className="flex flex-col lg:flex-row gap-[90px] items-center justify-between px-[4%]">
             <div>
-              <div className='lg:w-[570px]'>
-                <h1 className='text-[30px] leading-[46px] text-headingColor font-[800] md:text-[50px]  md:leading-[65px]'>
-                  Fueling Patient Journeys with Boundless Joy.
+              <div className="lg:w-[570px]">
+                <h1 className="text-[30px] leading-[46px] text-headingColor font-[800] md:text-[50px] md:leading-[65px]">
+                  Streamlining LPG Gas Booking with Ease.
                 </h1>
-                <p className='paragraph'>
-                  we're passionate about helping our patients lead healthier, longer lives. With personalized care and advanced treatments, we empower individuals to thrive and make the most of every moment. Together, we're committed to making a positive impact on health and well-being, one patient at a time.
+                <p className="paragraph">
+                  We're dedicated to making gas booking simple and efficient. With reliable service and timely deliveries, we ensure that every household receives the fuel they need without hassle. Join us in delivering convenience and safety to every home.
                 </p>
-                <button className='btn'>Book an Appointment</button>
+                <button className="btn"  onClick={() => navigate('/gass')}>Book Your Cylinder</button>
               </div>
 
-              <div className='mt-[20px] lg:mt-[25px] flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-[30px]'>
+              <div className="mt-[20px] lg:mt-[25px] flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-[30px]">
                 <div>
-                  <h2 className='text-[30px] lg:text-[35px] font-[700] text-HeadingColor'>
+                  <h2 className="text-[30px] lg:text-[35px] font-[700] text-HeadingColor">
                     30+
                   </h2>
-                  <span className='w-[100px] h-2 bg-Yellow rounded-full block mt-[-14px]'></span>
-                  <p className="paragraph">Years of Experience</p>
-
+                  <span className="w-[100px] h-2 bg-Yellow rounded-full block mt-[-14px]"></span>
+                  <p className="paragraph">Years of Service</p>
                 </div>
                 <div>
-                  <h2 className='text-[30px] lg:text-[35px] font-[700] text-HeadingColor'>
-                    12+
+                  <h2 className="text-[30px] lg:text-[35px] font-[700] text-HeadingColor">
+                    50+
                   </h2>
-                  <span className='w-[100px] h-2 bg-Purple rounded-full block mt-[-14px]'></span>
-                  <p className="paragraph">Outlets</p>
-
+                  <span className="w-[100px] h-2 bg-Purple rounded-full block mt-[-14px]"></span>
+                  <p className="paragraph">Service Locations</p>
                 </div>
                 <div>
-                  <h2 className='text-[30px] lg:text-[35px] font-[700] text-HeadingColor'>
+                  <h2 className="text-[30px] lg:text-[35px] font-[700] text-HeadingColor">
                     100%
                   </h2>
-                  <span className='w-[100px] h-2 bg-SkyBlue rounded-full block mt-[-14px]'></span>
-                  <p className="paragraph">Patient Satisfaction</p>
-
+                  <span className="w-[100px] h-2 bg-SkyBlue rounded-full block mt-[-14px]"></span>
+                  <p className="paragraph">Customer Satisfaction</p>
                 </div>
-
-
               </div>
             </div>
 
-
-
             <div className="flex gap-[30px] justify-end">
-              <div className='   flex justify-center items-center rounded-xl'>
-                <img src='/gass1.png' alt="" className='w-full  bg-gradient-to-b from-yellow-200 via-yellow-400 to-yellow-600 rounded-xl' />
+              <div className="flex justify-center items-center rounded-xl">
+                <img src="/gass1.png" alt="" className="w-full bg-gradient-to-b from-yellow-200 via-yellow-400 to-yellow-600 rounded-xl" />
               </div>
-              <div className='mt-[30px]'>
-                <img src='/gass1.png' alt="" className='w-full mb-[30px] bg-gradient-to-b from-purple-300 via-purple-500 to-purple-700 rounded-xl' />
-                <img src='/gass1.png' alt="" className='w-full bg-gradient-to-b from-sky-200 via-sky-400 to-sky-600 rounded-xl' />
+              <div className="mt-[30px]">
+                <img src="/gass1.png" alt="" className="w-full mb-[30px] bg-gradient-to-b from-purple-300 via-purple-500 to-purple-700 rounded-xl" />
+                <img src="/gass1.png" alt="" className="w-full bg-gradient-to-b from-sky-200 via-sky-400 to-sky-600 rounded-xl" />
               </div>
-
             </div>
           </div>
         </div>
+
       </section>
       {/* Hero Section End  */}
 
@@ -143,7 +138,7 @@ const Home = () => {
       </section> */}
 
       {/* <About /> */}
-{/* 
+      {/* 
       <section>
         <div className="container ">
           <div className="mx-auto xl:w-[470px]">
@@ -205,7 +200,7 @@ const Home = () => {
           </div>
         </div>
       </section> */}
-{/* 
+      {/* 
       <section>
         <div className="container">
           <div className="mx-auto xl:w-[470px]">
@@ -248,7 +243,7 @@ const Home = () => {
         </div>
       </section> */}
       {/* Testimonials */}
-      <Footer/>
+      <Footer />
     </>
   )
 }

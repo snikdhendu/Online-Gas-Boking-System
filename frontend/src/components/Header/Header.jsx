@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from "react";
 import Logo from "../../assets/images/logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import profile from "../../assets/images/profile.png";
 import { BiMenu } from "react-icons/bi";
 import { AuthContext } from "../../context/authContext";
@@ -8,9 +8,10 @@ import AvatarCom from "../AvatarCom";
 import { useUser } from "@clerk/clerk-react";
 
 
+
 const navLinks = [
   { path: "/", display: "Home" },
-  { path: "/gasses", display: "Gases" },
+  { path: "/gases", display: "Gases" },
   { path: "/service", display: "Booking" },
   { path: "/contact", display: "Contact" },
 ];
@@ -20,6 +21,7 @@ const Header = () => {
   const menuRef = useRef(null);
   // const { user, role, token } = useContext(AuthContext);
   const { user } = useUser();
+  const navigate=useNavigate();
 
   const toggleMenu = () => menuRef.current.classList.toggle("showMenu");
 

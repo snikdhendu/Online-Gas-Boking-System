@@ -2,8 +2,10 @@
 import { useUser } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 import { Avatar } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 const MainDashBoard = () => {
   const { user } = useUser();
+  const navigate = useNavigate();
   if (!user) {
     return null; // Or handle the case when user is null
   }
@@ -15,15 +17,10 @@ const MainDashBoard = () => {
 
       <div className="min-h-screen bg-transparent w-full">
         {/* Header */}
-        {/* <header className="mb-8 flex items-center justify-between">
+        <header className="mb-8 flex items-center justify-between">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Gas Booking Dashboard</h1>
-          <button className="p-2 rounded-full bg-white shadow-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-            </svg>
-            <span className="sr-only">Notifications</span>
-          </button>
-        </header> */}
+          <Link to="/" className="text-blue-500 hover:underline">Back to Home</Link>
+        </header>
 
         {/* Welcome Card */}
         <div className="mb-8 bg-gradient-to-r from-blue-500 to-teal-400 rounded-lg p-6 text-white shadow-lg">
@@ -36,10 +33,10 @@ const MainDashBoard = () => {
         <h2 className="mb-4 text-xl font-semibold text-gray-700">Quick Actions</h2>
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-8">
           {[
-            { title: "Book Cylinder", icon: "M13 10V3L4 14h7v7l9-11h-7z", primary: true },
-            { title: "Booking History", icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" },
-            { title: "Schedule Delivery", icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" },
-            { title: "My Profile", icon: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" }
+            { title: "Book Cylinder", icon: "M13 10V3L4 14h7v7l9-11h-7z", primary: true, route: "/gases" },
+            { title: "Booking History", icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z", route: "/dashboard/myorders" },
+            { title: "Schedule Delivery", icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z", route: "/dashboard/myorders" },
+            { title: "My Profile", icon: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z", route: "#" }
           ].map((action, index) => (
             <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <div className="flex items-center justify-between mb-4">
@@ -48,7 +45,9 @@ const MainDashBoard = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={action.icon} />
                 </svg>
               </div>
-              <button className={`w-full py-2 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 
+              <button
+                onClick={() => navigate(action.route)}
+                className={`w-full py-2 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 
                   bg-blue-500 text-white hover:bg-blue-600
                   
                 `}>
