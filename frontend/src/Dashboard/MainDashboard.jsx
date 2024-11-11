@@ -7,126 +7,95 @@ const MainDashBoard = () => {
   if (!user) {
     return null; // Or handle the case when user is null
   }
+  console.log(user);
 
   return (
     <div className="  bg-white text-black   items-center pt-28 min-h-screen lg:ml-64 flex flex-col gap-4 justify-between p-8 -mt-14" style={{ height: '500px', width: "83%" }} >
-      <div className="bg-gradient-to-r from-textmain to-yellow-300 text-white font-bold text-3xl w-full rounded-md bg-teal-600 h-36 flex justify-left p-8 items-center flex-col gap-3 ">
-        <h1>Hello , <span className=" text-white text-4xl font-extrabold">{user.fullName}</span>. 👋</h1>
-        <p className=" text-base font-royal4">
-          Welcome to your Dashboard!
-          Check your latest progress and insights on your career journey today.</p>
-      </div>
-      <div className=" h-96 w-full  flex gap-3">
-        <div className="w-1/2 h-full justify-center  items-center flex p-10 flex-col gap-6 ">
-          <div className="h-8 w-full text-left p-8 ">
-            <h1 className=" font-bold text-2xl text-textmain "> Our profile:</h1>
-          </div>
-          <div className="w-4/5 h-80 rounded-md bg-white dark:border-b-slate-700 dark:bg-background shadow-2xl border border-zinc-300 flex flex-col gap-3 p-4">
-            {/* Avatar and User Info */}
-            <div className="w-full h-fit p-5 flex flex-col gap-2">
-              {/* Avatar */}
-              <div className="w-full h-1/2 flex justify-center items-center mb-3">
-                <Avatar
-                  src={user.imageUrl || ''}
-                  sx={{ width: 96, height: 96 }}
-                  className="border-4 border-textmain shadow-lg  shadow-current"
-                />
+
+
+      <div className="min-h-screen bg-transparent w-full">
+        {/* Header */}
+        {/* <header className="mb-8 flex items-center justify-between">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Gas Booking Dashboard</h1>
+          <button className="p-2 rounded-full bg-white shadow-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+            <span className="sr-only">Notifications</span>
+          </button>
+        </header> */}
+
+        {/* Welcome Card */}
+        <div className="mb-8 bg-gradient-to-r from-blue-500 to-teal-400 rounded-lg p-6 text-white shadow-lg">
+          <h2 className="text-2xl font-bold mb-2">Welcome back, {user.fullName}!</h2>
+          <p className="text-blue-100">Your last booking was on 15th October 2024</p>
+          <p className="mt-4">Current gas cylinder status: 75% full</p>
+        </div>
+
+        {/* Quick Actions */}
+        <h2 className="mb-4 text-xl font-semibold text-gray-700">Quick Actions</h2>
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+          {[
+            { title: "Book Cylinder", icon: "M13 10V3L4 14h7v7l9-11h-7z", primary: true },
+            { title: "Booking History", icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" },
+            { title: "Schedule Delivery", icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" },
+            { title: "My Profile", icon: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" }
+          ].map((action, index) => (
+            <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold">{action.title}</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={action.icon} />
+                </svg>
               </div>
-
-              {/* User Name */}
-              <div className="w-full  flex justify-center items-center">
-                <span className="flex gap-2 w-full justify-center items-center ">
-                  <h1 className="lg:text-2xl text-lg font-extrabold font-royal4 text-textmain">{user.fullName}</h1>
-                </span>
-              </div>
-
-              <div className="w-full  flex justify-center items-center">
-                <span className="flex gap-2 w-full justify-center items-center text-textsecond text-sm font-bold ">
-                  {user.primaryEmailAddress?.emailAddress || 'No email address found'}
-                </span>
-              </div>
-
-
-              {/* User Role */}
-
-
-
-              {/* Social Media Links */}
-              {/* Social Media Links */}
-
+              <button className={`w-full py-2 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 
+                  bg-blue-500 text-white hover:bg-blue-600
+                  
+                `}>
+                {action.primary ? "Book Now" : "View"}
+              </button>
             </div>
+          ))}
+        </div>
 
-            {/* Divider */}
-            {/* <hr className="w-full border-t border-gray-300 dark:border-gray-800" /> */}
-
-            {/* Additional User Info */}
-
-
-            {/* <hr className="w-full border-t border-gray-300 dark:border-gray-800" /> */}
-            {/* Edit Profile Button */}
-            <div className="w-full flex justify-center ">
-              <Link
-                to="./profile"
-                className="w-1/2 rounded-md bg-blue-100 hover:bg-blue-300 text-textsecond flex justify-center items-center p-2 font-royal4"
-              >
-                Edit profile
-              </Link>
+        {/* User Profile Summary */}
+        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+          <h2 className="text-xl font-semibold mb-4">Your Profile</h2>
+          <div className="flex items-center space-x-4">
+            <Avatar src={user.imageUrl} alt={user.fullName} sx={{ width: 100, height: 100 }} />
+            <div>
+              <h3 className="text-lg font-semibold">{user.fullName}</h3>
+              <p className="text-sm text-gray-500">Customer ID: GAS{user.id}</p>
+              <p className="text-sm text-gray-500">{user.primaryEmailAddress.emailAddress}</p>
+              <p className="text-sm text-gray-500">Phone: +1 (555) 123-4567</p>
             </div>
           </div>
         </div>
-        <div className="w-1/2 h-full flex flex-col justify-center  gap-3">
-          <div className="h-8 ">
-            <h1 className=" font-bold text-2xl text-textmain "> Check out our products:</h1>
+
+        {/* Recent Bookings */}
+        {/* <div className="bg-white rounded-lg shadow-md p-6">
+          <h2 className="text-xl font-semibold mb-4">Recent Bookings</h2>
+          <div className="space-y-4">
+            {[
+              { date: '2024-10-15', status: 'Delivered', id: 'ORD-001' },
+              { date: '2024-09-01', status: 'Cancelled', id: 'ORD-002' },
+              { date: '2024-07-22', status: 'Delivered', id: 'ORD-003' },
+            ].map((booking) => (
+              <div key={booking.id} className="flex items-center justify-between border-b border-gray-200 pb-2">
+                <div>
+                  <p className="font-medium">{booking.date}</p>
+                  <p className="text-sm text-gray-500">Order ID: {booking.id}</p>
+                </div>
+                <span className={`px-2 py-1 text-xs font-semibold rounded ${booking.status === 'Delivered' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                  }`}>
+                  {booking.status}
+                </span>
+              </div>
+            ))}
           </div>
-          <div className=" grid grid-cols-2 h-4/5  p-4">
-
-            <Link to='/mentors'
-              className="w-64 h-32 bg-white shadow-[0px_0px_15px_rgba(0,0,0,0.09)] flex justify-left items-center space-y-3 relative overflow-hidden p-4"
-            >
-              <div className="w-24 h-24 bg-textmain rounded-full absolute -right-5 -top-7">
-                <p className="absolute bottom-6 left-7 text-white text-2xl">01</p>
-              </div>
-              <h1 className="font-bold text-xl">Mentors</h1>
-            </Link>
-
-            <Link to='./aichatbot'
-              className="w-64 h-32 bg-white shadow-[0px_0px_15px_rgba(0,0,0,0.09)] flex justify-left items-center space-y-3 relative overflow-hidden p-4"
-            >
-              <div className="w-24 h-24 bg-textmain rounded-full absolute -right-5 -top-7">
-                <p className="absolute bottom-6 left-7 text-white text-2xl">02</p>
-              </div>
-              <h1 className="font-bold text-xl">AI Mentor</h1>
-            </Link>
-
-
-            <Link to='./library'
-              className="w-64 h-32 bg-white shadow-[0px_0px_15px_rgba(0,0,0,0.09)] flex justify-left items-center space-y-3 relative overflow-hidden p-4"
-            >
-              <div className="w-24 h-24 bg-textmain rounded-full absolute -right-5 -top-7">
-                <p className="absolute bottom-6 left-7 text-white text-2xl">03</p>
-              </div>
-              <h1 className="font-bold text-xl">Career Library</h1>
-            </Link>
-
-
-            <Link to='/workshops'
-              className="w-64 h-32 bg-white shadow-[0px_0px_15px_rgba(0,0,0,0.09)] flex justify-left items-center space-y-3 relative overflow-hidden p-4"
-            >
-              <div className="w-24 h-24 bg-textmain rounded-full absolute -right-5 -top-7">
-                <p className="absolute bottom-6 left-7 text-white text-2xl">04</p>
-              </div>
-              <h1 className="font-bold text-xl">Workshops</h1>
-            </Link>
-
-
-
-
-
-
-
-          </div>
-        </div>
+        </div> */}
       </div>
+
     </div>
   );
 }

@@ -27,10 +27,13 @@ const Header = () => {
     <header ref={headerRef} className="header stickyHeader flex items-center">
       <div className="container">
         <div className="flex items-center justify-between">
-          <div>
-            {/* <img src={Logo} alt="Logo" /> */}
-            BookMyGas
-          </div>
+          <Link to='/' className="flex justify-center items-center gap-2 p-2  border-primary rounded-lg  text-white">
+            <img src='/logo.png' alt="Logo" className="h-12 w-12 rounded-full shadow-md bg-gradient-to-r from-yellow-400 to-orange-400" />
+            <span className="text-2xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-500">
+              BookMyGas
+            </span>
+          </Link>
+
 
           <div className="navigation" ref={menuRef} onClick={toggleMenu}>
             <ul className="menu flex items-center gap-[2.7rem]">

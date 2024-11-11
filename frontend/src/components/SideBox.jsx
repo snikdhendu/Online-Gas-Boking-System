@@ -12,8 +12,11 @@ const SideBox = () => {
    // }
    const location = useLocation();
    return (
+      
       <aside id="logo-sidebar" className="fixed top-0 bg-slate-50 left-0 z-10 w-64 h-screen pt-20 transition-transform -translate-x-full  border-r border-gray-200 sm:translate-x-0" aria-label="Sidebar">
+         
          <div className="h-full px-3 pb-4 overflow-y-auto bg-slate-50 mt-5 flex justify-between flex-col">
+            
             <ul className="space-y-2 font-bold text-xl font-royal4 ">
                <li>
                   <Link
