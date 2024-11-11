@@ -7,6 +7,7 @@ import {
   setPaymentStatusToPaid,
   updateBooking,
 } from '../controllers/orderController.js';
+import { checkAdminStatus } from '../controllers/userController.js';
 
 const router = express.Router();
 
@@ -24,6 +25,8 @@ router.post('/booking/new',createBooking);
 router.put('/bookings/:id/payment-paid', setPaymentStatusToPaid);
 
 router.put('/bookings/:id/update', updateBooking);
+
+router.post('/check-admin',checkAdminStatus);
 
 // // Route for creating a new booking
 // router.post('/create', createBooking);

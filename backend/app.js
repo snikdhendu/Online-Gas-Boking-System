@@ -27,6 +27,8 @@ app.use(cors({
   credentials: true, // Enable credentials (cookies/auth tokens) if needed
 }));
 
+
+
 // Middleware for parsing JSON
 app.use(express.json());
 
