@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axiosInstance from '../utils/axiosInstance';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import { useUser } from '@clerk/clerk-react';
@@ -9,11 +9,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Services = () => {
   const location = useLocation();
-  const { gassName: stateGassName, company: stateCompany, quantity: stateQuantity } = location.state || {};
+  const { gassName: stateGassName, company: stateCompany, quantity: stateQuantity, currentPrice: statePrice } = location.state || {};
   const { user } = useUser();
   const clerkId = user?.id;
   const email = user?.emailAddresses[0]?.emailAddress;
-  
+  const navigate= useNavigate();
 
   // State to manage the current step and form data
   const [step, setStep] = useState(1);
@@ -28,7 +28,7 @@ const Services = () => {
   const [company, setCompany] = useState(stateCompany || '');
   const [quantity, setQuantity] = useState(stateQuantity || '');
   const [paymentSuccess, setPaymentSuccess] = useState(false);
-
+  const [price, setPrice] = useState(statePrice || '');
 
   // Function to handle next step
   const handleNext = () => {
@@ -55,7 +55,7 @@ const Services = () => {
     const bookingData = {
       clerkId: clerkId,
       deliveryDate: new Date().toISOString(), 
-      amount: 1, 
+      amount: price, 
       cylinder: {
         brand: company,
         size: quantity
@@ -69,6 +69,7 @@ const Services = () => {
       console.log('Booking created successfully:', response.data);
       toast.success('Payment done successfully');
       setPaymentSuccess(true);
+      navigate('/dashboard/myorders');
     } catch (error) {
       console.error('Error creating booking:', error.response?.data || error.message);
       toast.error('Error creating booking');
@@ -82,6 +83,7 @@ const Services = () => {
     setGassName('');
     setCompany('');
     setQuantity('');
+    setPrice('');
     setPaymentSuccess(false);
   };
 
@@ -127,6 +129,17 @@ const Services = () => {
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                   placeholder="Enter quantity"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-gray-700 font-medium mb-1">Price (in ₹)</label>
+                <input
+                  type="number"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  placeholder="Price"
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                 />
               </div>
@@ -207,7 +220,8 @@ const Services = () => {
               <h2 className="text-2xl font-semibold mb-6 text-center">Order Summary</h2>
               <p><strong>Gas Name:</strong> {gassName}</p>
               <p><strong>Company:</strong> {company}</p>
-              <p><strong>Quantity:</strong> {quantity}</p>
+              <p><strong>Size:</strong> {quantity} kg</p>
+              <p><strong>Price:</strong> ₹ {price}</p>
               <p><strong>Name:</strong> {personalDetails.name}</p>
               <p><strong>Address:</strong> {personalDetails.address}</p>
               <p><strong>Pin Code:</strong> {personalDetails.pinCode}</p>
@@ -226,14 +240,15 @@ const Services = () => {
                   className="w-full py-2 px-4 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600 focus:outline-none"
                   onClick={handleFinalSubmit}
                 >
-                  Make Payment
+                  Pay Now
                 </button>
               )}
             </div>
           )}
         </div>
       </section>
-      <Footer/>
+      <Footer />
+      {/* <ToastContainer /> */}
     </>
   );
 };

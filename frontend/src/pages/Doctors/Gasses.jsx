@@ -8,21 +8,21 @@ const Gass = () => {
   const navigate = useNavigate();
 
   const gass = [
-    { id: 1, gassName: "LPG", company: "HP", quantity: "14", currentPrice: "₹950", imgurl: '/gass1.png' },
-    { id: 2, gassName: "LPG", company: "Indian", quantity: "14", currentPrice: "₹940", imgurl: '/gass1.png' },
-    { id: 3, gassName: "LPG", company: "HP", quantity: "19", currentPrice: "₹945", imgurl: '/gass1.png' },
-    { id: 4, gassName: "LPG", company: "Indian", quantity: "19", currentPrice: "₹930", imgurl: '/gass1.png' },
-    { id: 5, gassName: "LPG", company: "HP", quantity: "5", currentPrice: "₹1600", imgurl: '/gass1.png' },
-    { id: 6, gassName: "LPG", company: "Indian", quantity: "5", currentPrice: "₹1580", imgurl: '/gass1.png' },
-    { id: 7, gassName: "LPG", company: "Bharat Gas", quantity: "19 (Commercial)", currentPrice: "₹1590", imgurl: '/gass1.png' },
-    { id: 8, gassName: "LPG", company: "Reliance Gas", quantity: "19 (Commercial)", currentPrice: "₹1575", imgurl: '/gass1.png' },
+    { id: 1, gassName: "LPG", company: "HP", quantity: "14", currentPrice: "950", imgurl: '/gass1.png' },
+    { id: 2, gassName: "LPG", company: "Indian", quantity: "14", currentPrice: "940", imgurl: '/gass1.png' },
+    { id: 3, gassName: "LPG", company: "HP", quantity: "19", currentPrice: "945", imgurl: '/gass1.png' },
+    { id: 4, gassName: "LPG", company: "Indian", quantity: "19", currentPrice: "930", imgurl: '/gass1.png' },
+    { id: 5, gassName: "LPG", company: "HP", quantity: "5", currentPrice: "1600", imgurl: '/gass1.png' },
+    { id: 6, gassName: "LPG", company: "Indian", quantity: "5", currentPrice: "1580", imgurl: '/gass1.png' },
+    { id: 7, gassName: "LPG", company: "Bharat Gas", quantity: "19 (Commercial)", currentPrice: "1590", imgurl: '/gass1.png' },
+    { id: 8, gassName: "LPG", company: "Reliance Gas", quantity: "19 (Commercial)", currentPrice: "1575", imgurl: '/gass1.png' },
   ];
 
 
   const handleBookNow = (item) => {
-    navigate('/service', { state: item });
+    navigate('/service', { state: { ...item, currentPrice: item.currentPrice } });
   };
-
+  
   return (
     <>
       <Header />
@@ -45,7 +45,7 @@ const Gass = () => {
                 <h3 className="text-xl font-semibold mb-2">{item.gassName}</h3>
                 <p className="text-gray-600">{item.company}</p>
                 <p className="text-gray-600">Quantity: {item.quantity} kg</p>
-                <p className="text-gray-700 font-semibold">Price: {item.currentPrice}</p>
+                <p className="text-gray-700 font-semibold">Price: ₹{item.currentPrice}</p>
                 <button onClick={() => handleBookNow(item)} className="btn mt-4 w-full bg-blue-500 text-white rounded-md hover:bg-blue-600">
                   Book Now
                 </button>
