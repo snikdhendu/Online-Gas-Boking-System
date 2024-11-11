@@ -48,7 +48,7 @@ const UserDashboard = () => {
   useEffect(() => {
     const checkAdminStatus = async () => {
       try {
-        const response = await axios.post('/api/check-admin', { clerkId });
+        const response = await axiosInstance.post('/api/check-admin', { clerkId });
         setIsAdmin(response.data.isAdmin);
       } catch (error) {
         console.error('Error checking admin status:', error);
