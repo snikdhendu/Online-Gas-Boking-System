@@ -4,6 +4,8 @@ import { useLocation } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import { useUser } from '@clerk/clerk-react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Services = () => {
   const location = useLocation();
@@ -23,6 +25,8 @@ const Services = () => {
   const [gassName, setGassName] = useState(stateGassName || '');
   const [company, setCompany] = useState(stateCompany || '');
   const [quantity, setQuantity] = useState(stateQuantity || '');
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+
 
   // Function to handle next step
   const handleNext = () => {
@@ -59,11 +63,22 @@ const Services = () => {
     try {
       const response = await axiosInstance.post('/api/booking/new', bookingData);
       console.log('Booking created successfully:', response.data);
-      alert('Booking created successfully');
+      toast.success('Payment done successfully');
+      setPaymentSuccess(true);
     } catch (error) {
       console.error('Error creating booking:', error.response?.data || error.message);
-      alert('Error creating booking');
+      toast.error('Error creating booking');
     }
+  };
+
+  const handleMakeMoreBooking = () => {
+    // Reset form fields and payment status
+    setStep(1);
+    setPersonalDetails({ name: '', address: '', pinCode: '' });
+    setGassName('');
+    setCompany('');
+    setQuantity('');
+    setPaymentSuccess(false);
   };
 
   return (
@@ -193,13 +208,23 @@ const Services = () => {
               <p><strong>Address:</strong> {personalDetails.address}</p>
               <p><strong>Pin Code:</strong> {personalDetails.pinCode}</p>
 
-              <button
-                type="button"
-                className="w-full py-2 px-4 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600 focus:outline-none"
-                onClick={handleFinalSubmit}
-              >
-                Make Payment
-              </button>
+              {paymentSuccess ? (
+                <button
+                  type="button"
+                  className="w-full py-2 px-4 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600 focus:outline-none"
+                  onClick={handleMakeMoreBooking}
+                >
+                  Make More Booking
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="w-full py-2 px-4 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600 focus:outline-none"
+                  onClick={handleFinalSubmit}
+                >
+                  Make Payment
+                </button>
+              )}
             </div>
           )}
         </div>
