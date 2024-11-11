@@ -42,9 +42,12 @@ const Services = () => {
   const handleFinalSubmit = async (e) => {
     e.preventDefault();
 
+    const deliveryDate = new Date();
+    deliveryDate.setDate(deliveryDate.getDate() + 5);
+
     const bookingData = {
       clerkId: clerkId,
-      deliveryDate: new Date().toISOString(), 
+      deliveryDate: deliveryDate.toISOString(), 
       amount: price, 
       cylinder: {
         brand: company,
