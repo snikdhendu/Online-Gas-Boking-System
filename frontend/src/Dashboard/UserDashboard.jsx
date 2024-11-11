@@ -5,6 +5,7 @@ import axiosInstance from '../utils/axiosInstance';
 
 import MainDashBoard from './MainDashboard';
 import SideBox from '../components/SideBox';
+import MyOrder from './MyOrder';
 
 const UserDashboard = () => {
   const { isSignedIn, user } = useUser();
@@ -45,6 +46,7 @@ const UserDashboard = () => {
 
       <Routes>
         <Route path="/" element={<MainDashBoard />} />
+        <Route path="/myorders" element={<MyOrder/>} />
       </Routes>
     </div>
   );

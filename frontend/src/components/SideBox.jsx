@@ -1,5 +1,6 @@
 // import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import {SignOutButton } from "@clerk/clerk-react";
 // import { useFirebase } from '../Context/FirebaseContext';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faSignOut } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +13,7 @@ const SideBox = () => {
    const location = useLocation();
    return (
       <aside id="logo-sidebar" className="fixed top-0 bg-slate-50 left-0 z-10 w-64 h-screen pt-20 transition-transform -translate-x-full  border-r border-gray-200 sm:translate-x-0" aria-label="Sidebar">
-         <div className="h-full px-3 pb-4 overflow-y-auto bg-slate-50 mt-5">
+         <div className="h-full px-3 pb-4 overflow-y-auto bg-slate-50 mt-5 flex justify-between flex-col">
             <ul className="space-y-2 font-bold text-xl font-royal4 ">
                <li>
                   <Link
@@ -38,8 +39,8 @@ const SideBox = () => {
 
                <li>
                   <Link
-                     to="/dashboard/profile"
-                     className={`flex items-center p-2 rounded-lg text-textmain group ${location.pathname === '/dashboard/profile' ? 'bg-blue-600 text-white' : ' hover:hover:bg-gray-300 text-blue-600'
+                     to="/dashboard/myorders"
+                     className={`flex items-center p-2 rounded-lg text-textmain group ${location.pathname === '/dashboard/myorders' ? 'bg-blue-600 text-white' : ' hover:hover:bg-gray-300 text-blue-600'
                         }`}
 
                   >
@@ -48,7 +49,7 @@ const SideBox = () => {
                            } hover:text-blue-600`} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                         <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
                      </svg>
-                     <span className={`flex-1 ms-3 whitespace-nowrap ${location.pathname === '/dashboard/profile' ? 'text-white' : 'text-textmain'} hover:text-white`}>Profile</span>
+                     <span className={`flex-1 ms-3 whitespace-nowrap ${location.pathname === '/dashboard/profile' ? 'text-white' : 'text-textmain'} hover:text-white`}>My orders</span>
                      {/* <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span> */}
                   </Link>
                </li>
@@ -56,7 +57,7 @@ const SideBox = () => {
 
 
 
-               <li>
+               {/* <li>
                   <Link
                      to="/dashboard/aichatbot"
                      className={`flex items-center p-2 rounded-lg text-textmain group ${location.pathname === '/dashboard/aichatbot' ? 'bg-blue-600 text-white' : ' hover:hover:bg-gray-300 text-blue-600'
@@ -105,7 +106,7 @@ const SideBox = () => {
                      </svg>
                      <span className={`flex-1 ms-3 whitespace-nowrap ${location.pathname === '/dashboard/join' ? 'text-white' : 'text-textmain'} hover:text-white`}>Join School</span>
                   </Link>
-               </li>
+               </li> */}
 
                <li>
                   <Link
@@ -124,6 +125,16 @@ const SideBox = () => {
                </li>
 
                {/* <li><button classNameName=' btn bg-primary text-white w-full mt-96' onClick={signoutUser}>Log out <FontAwesomeIcon icon={faSignOut} /></button></li> */}
+            </ul>
+            <ul className=' mb-4'>
+               <li className="flex justify-center items-center mt-2 bg-blue-700 rounded-md">
+                  <SignOutButton>
+                     <button className="bg-primary text-white  px-3 py-3 rounded flex items-center gap-1 text-sm ">
+                        Log out 
+                        
+                     </button>
+                  </SignOutButton>
+               </li>
             </ul>
          </div>
       </aside>
