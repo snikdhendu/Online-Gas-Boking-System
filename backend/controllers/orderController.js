@@ -67,9 +67,7 @@ export const createBooking = async (req, res) => {
             status: 'confirmed', 
         });
 
-     
         const savedBooking = await newBooking.save();
-
       
         res.status(201).json({
             message: 'Booking created successfully',
@@ -121,6 +119,7 @@ export const updateBooking = async (req, res) => {
         res.status(500).json({ message: 'Error updating booking', error });
     }
 };
+
 export const setPaymentStatusToPaid = async (req, res) => {
     const { bookingId } = req.params; 
 

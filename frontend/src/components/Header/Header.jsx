@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import Logo from "../../assets/images/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import profile from "../../assets/images/profile.png";
@@ -31,7 +30,7 @@ const Header = () => {
   const { user, role, token } = useContext(AuthContext);
 
   const handleStickyHeader = () => {
-    window.addEventListener("scroll", () => {
+    if (headerRef.current) {
       if (
         document.body.scrollTop > 80 ||
         document.documentElement.scrollTop > 80
@@ -40,16 +39,17 @@ const Header = () => {
       } else {
         headerRef.current.classList.remove("stickyHeader");
       }
-    });
+    }
   };
 
   useEffect(() => {
-    handleStickyHeader();
+    window.addEventListener("scroll", handleStickyHeader);
 
     return () => window.removeEventListener("scroll", handleStickyHeader);
-  });
+  }, []); // Empty dependency array to add listener only once
 
   const toggleMenu = () => menuRef.current.classList.toggle("showMenu");
+
   return (
     <header ref={headerRef} className="header flex items-center">
       <div className="container">
@@ -59,7 +59,7 @@ const Header = () => {
             GassConnect
           </div>
 
-          <div className="navigation " ref={menuRef} onClick={toggleMenu}>
+          <div className="navigation" ref={menuRef} onClick={toggleMenu}>
             <ul className="menu flex items-center gap-[2.7rem]">
               {navLinks.map((link, index) => (
                 <li key={index}>
@@ -79,17 +79,20 @@ const Header = () => {
           </div>
 
           <div className="flex items-center gap-4">
-
-            <Link to="/sign-in" className="bg-Color py-2 px-6 text-white font-[500] h-[44px] flex text-center justify-self-center rounded-[50px]">
+            <Link
+              to="/sign-in"
+              className="bg-Color py-2 px-6 text-white font-[500] h-[44px] flex text-center justify-self-center rounded-[50px]"
+            >
               Login
             </Link>
-            <Link to="/sign-up" className="bg-Color py-2 px-6 text-white font-[500] h-[44px] flex text-center justify-self-center rounded-[50px]">
-
+            <Link
+              to="/sign-up"
+              className="bg-Color py-2 px-6 text-white font-[500] h-[44px] flex text-center justify-self-center rounded-[50px]"
+            >
               Signup
-
             </Link>
             <span className="md:hidden" onClick={toggleMenu}>
-              <BiMenu className="w-6 h-6 cursor-pointer"></BiMenu>
+              <BiMenu className="w-6 h-6 cursor-pointer" />
             </span>
           </div>
         </div>
