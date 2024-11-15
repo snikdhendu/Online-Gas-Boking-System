@@ -9,6 +9,7 @@ import MyOrder from './MyOrder';
 import ViewOrders from './ViewOrders';
 
 import Header from '../components/Header/Header';
+import HelpSupportPage from './Help';
 
 const UserDashboard = () => {
   const { isSignedIn, user } = useUser();
@@ -67,6 +68,7 @@ const UserDashboard = () => {
         <Route path="/" element={<MainDashBoard isAdmin={isAdmin} />} />
         <Route path="/myorders" element={<MyOrder />} />
         <Route path="/vieworders" element={<ViewOrders/>} />
+        <Route path="/help" element={<HelpSupportPage/>} />
       </Routes>
     </div>
   );
